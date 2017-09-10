@@ -4,7 +4,7 @@
   "description": "A bot that plays the phone game threes",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "ava src/test.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,17 @@
   "bugs": {
     "url": "https://github.com/mees-/threes/issues"
   },
-  "homepage": "https://github.com/mees-/threes#readme"
+  "homepage": "https://github.com/mees-/threes#readme",
+  "dependencies": {
+    "clone": "^2.1.1",
+    "matrix-rotate": "0.0.2",
+    "shuffle-array": "^1.0.1"
+  },
+  "devDependencies": {
+    "ava": "^0.22.0",
+    "prettier": "^1.6.1"
+  },
+  "ava": {
+    "files": "src/test.js"
+  }
 }
