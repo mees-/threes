@@ -1,5 +1,5 @@
 {
-  "name": "threes-bot",
+  "name": "threes",
   "version": "0.1.0",
   "description": "A bot that plays the phone game threes",
   "main": "src/index.js",
