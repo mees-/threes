@@ -19,3 +19,13 @@ test('Threes#moveBoard', t => {
     [0, 0, 0, 0],
   ])
 })
+
+test('Threes#move', t => {
+  const game = new Threes()
+
+  t.notThrows(() => {
+    for (const dir of ['UP', 'DOWN', 'LEFT', 'RIGHT']) {
+      game.move(dir)
+    }
+  })
+})
