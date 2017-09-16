@@ -14,6 +14,8 @@ const numScore = tile =>
 
 module.exports = class Threes {
   constructor() {
+    this.ended = false
+    this.impossibleMoves = []
     this.board = [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
     this._stack = []
     for (let i = 0; i < 9; i++) {
@@ -73,6 +75,7 @@ module.exports = class Threes {
 
     const moved = this.moveBoard(direction)
     if (moved) {
+      this.impossibleMoves = []
       const possibleSpawns = []
       switch (direction) {
         case 0: {
@@ -88,9 +91,9 @@ module.exports = class Threes {
         }
         case 1: {
           for (let i = 0; i < 4; i++) {
-            if (this.board[i][0] === 0) {
+            if (this.board[i][3] === 0) {
               possibleSpawns.push({
-                x: 0,
+                x: 3,
                 y: i,
               })
             }
@@ -110,9 +113,9 @@ module.exports = class Threes {
         }
         case 3: {
           for (let i = 0; i < 4; i++) {
-            if (this.board[i][3] === 0) {
+            if (this.board[i][0] === 0) {
               possibleSpawns.push({
-                x: 3,
+                x: 0,
                 y: i,
               })
             }
@@ -140,6 +143,13 @@ module.exports = class Threes {
           .map(num => num / 8)
         this.board[spawn.y][spawn.x] =
           shuffle.pick(possibleNums) || this.stack.shift()
+      }
+    } else {
+      if (!this.impossibleMoves.includes(direction)) {
+        this.impossibleMoves.push(direction)
+      }
+      if (this.impossibleMoves.length >= 4) {
+        this.ended = true
       }
     }
   }
